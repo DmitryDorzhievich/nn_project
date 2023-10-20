@@ -15,7 +15,6 @@ if uploaded_file is not None:
 
     if st.button("Определить вид спорта"):
         image.save("ggg.jpg")
-        st.success("Изображение успешно сохранено на диск.")
 
 resize = T.Resize((224, 224))
 model = resnet50()
@@ -40,5 +39,3 @@ sportname = {0: 'air hockey', 1: 'ampute football', 2: 'archery', 3: 'arm wrestl
 
 img = resize(io.read_image('ggg.jpg')/255)
 st.write(sportname[np.argmax(model(img.unsqueeze(0).to(device)).detach().cpu().numpy())])
-
-
